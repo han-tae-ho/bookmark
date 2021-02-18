@@ -1,8 +1,11 @@
 from django.urls import path
-from .views import BookmarkListView, BookmarkCreateView
+from .views import BookmarkListView, BookmarkCreateView, BookmarkDetailView
 
 urlpatterns = [
     path("", BookmarkListView.as_view(), name='list'),
     path("add/", BookmarkCreateView.as_view(), name='add'),
-    # 클래스형 뷰일 경우 as_veiw() 써야함
+    path("detail/<int:pk>/", BookmarkDetailView.as_view(), name='detail'),
 ]
+
+# 클래스형 뷰일 경우 as_view() 써야함
+# <int:pk> 사이트뒤에 숫자는 migrations 테이블의 primary_key 의미 (id)
