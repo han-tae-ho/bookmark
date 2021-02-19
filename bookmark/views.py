@@ -10,7 +10,8 @@ from django.shortcuts import render
 
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
-from  django.views.generic.detail import DetailView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
 
 from django.urls import reverse_lazy
 from .models import Bookmark
@@ -27,5 +28,13 @@ class BookmarkCreateView(CreateView):
     model = Bookmark
     fields = ['site_name','url']
     template_name_suffix = '_create'
+    #방법1 : success_url 을 이용하는 방법
     success_url = reverse_lazy('list')
+
+
+class BookmarkUpdateView(UpdateView):
+    model = Bookmark
+    fields = ['site_name','url']
+    template_name_suffix = '_update'
+    #방법 2: get_absolute url 을 이용하는 방법(모델에 설정)
 
