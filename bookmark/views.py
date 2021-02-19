@@ -9,9 +9,8 @@ from django.shortcuts import render
 # url을 입력 -> 웹 서버가 뷰를 찾아서 동작시킨다. -> 응답
 
 from django.views.generic.list import ListView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
 
 from django.urls import reverse_lazy
 from .models import Bookmark
@@ -37,4 +36,9 @@ class BookmarkUpdateView(UpdateView):
     fields = ['site_name','url']
     template_name_suffix = '_update'
     #방법 2: get_absolute url 을 이용하는 방법(모델에 설정)
+
+
+class BookmarkDeleteView(DeleteView):
+    model = Bookmark
+    success_url = reverse_lazy('list')
 
